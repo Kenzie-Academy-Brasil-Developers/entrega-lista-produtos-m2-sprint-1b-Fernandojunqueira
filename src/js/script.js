@@ -1,25 +1,30 @@
 // seu código aqui
 
-const tagUl  = document.querySelector('ul')
-const Button = document.querySelector('.containerBuscaPorNome button')
+const vitrinePrincipalProdutos  = document.querySelector('ul')
+const btnPesquisa = document.querySelector('.containerBuscaPorNome button')
 const inputPesquisar = document.querySelector('.campoBuscaPorNome')
-const botoes         = document.querySelector('#botoesContainer')
+const secao         = document.querySelector('#botoesContainer')
 const valorProdutos  = document.querySelector('.priceContainer')
 console.log(valorProdutos)
 
 
 function listarProdutos (array,callback){
 
-    tagUl.innerHTML = ''
-    let newArray = []
-
-    for(let i = 0; i < array.length; i++){
-
-        let card = callback(array[i])
-        tagUl.appendChild(card)
-    }
+    vitrinePrincipalProdutos.innerHTML = ''
+    let arrayDeProdutos = []
     
-    return newArray
+    array.forEach(Element => {
+        
+        let card = callback(Element)
+        vitrinePrincipalProdutos.appendChild(card)
+    })
+    // for(let i = 0; i < array.length; i++){
+
+    //     let card = callback(array[i])
+    //     vitrinePrincipalProdutos.appendChild(card)
+    // }
+    
+    return arrayDeProdutos
 }
 
 function criarHtmlCard(Element){
@@ -47,7 +52,7 @@ function criarHtmlCard(Element){
         
 listarProdutos (produtos,criarHtmlCard)
 
-Button.addEventListener('click',function(){
+btnPesquisa.addEventListener('click',function(){
 
     let pesquisaUsuario = inputPesquisar.value
     let result          = pesquisar(pesquisaUsuario)
@@ -57,11 +62,12 @@ Button.addEventListener('click',function(){
         listarProdutos(result,criarHtmlCard)
     }
 
-    let section = criarTotais(result)
-    let span    = document.createElement('span')
-    let ver     = section.appendChild(span)
+    let valorTotalProdutos = criarTotais(result)
+    let valorSomaTotal    = document.createElement('span')
     let preco   = result.reduce((valorInical,valorAtual) => valorInical+valorAtual.preco,0)
-    span.innerText = `R$ ${preco.toFixed(2)}`.replace('.',',')
+
+    valorTotalProdutos.appendChild(valorSomaTotal)
+    valorSomaTotal.innerText = `R$ ${preco.toFixed(2)}`.replace('.',',')
     
 
 
@@ -69,50 +75,26 @@ Button.addEventListener('click',function(){
 
 function pesquisar(string){
 
-    let resultadoBusca = []
     
-    for( let i = 0; i < produtos.length; i++){
+    const result = produtos.filter(element => element.nome.toLowerCase() == string.trim().toLowerCase())
 
-        if(string.trim().toLowerCase() == produtos[i].nome.toLowerCase() && string.trim().toLowerCase() !== ''){
-            
-            resultadoBusca.push(produtos[i])
-            inputPesquisar.value = ''
-        }
-    }
     inputPesquisar.value = ''
-    return resultadoBusca
+    return result
 }
 
-botoes.addEventListener('click',function(event){
+secao.addEventListener('click',function(event){
 
-    tagUl.innerHTML = ''
+    vitrinePrincipalProdutos.innerHTML = ''
     
     let tag    = event.target.innerText
     let result = pesquisarTag(tag)
-    console.log(result)
-    // if(tag == 'Todos Produtos'){
-    //     listarProdutos(produtos,criarHtmlCard)
-    //     let span    = document.createElement('span')
-    //     span.innerText = ''
-    //     let section = criarTotais(result)
-        
-    //     let ver     = section.appendChild(span)
-    //     let preco   = produtos.reduce((valorInical,valorAtual) => valorInical+valorAtual.preco,0)
-    //     span.innerText = `R$ ${preco.toFixed(2)}`.replace('.',',')
-        
-    // }
-
     
-         let section = criarTotais(result)
+        let valorTotalProdutos = criarTotais(result)
         let span    = document.createElement('span')
-        let ver     = section.appendChild(span)
+        let ver     = valorTotalProdutos.appendChild(span)
         let preco   = result.reduce((valorInical,valorAtual) => valorInical+valorAtual.preco,0)
         span.innerText = `R$ ${preco.toFixed(2)}`.replace('.',',')
     
-    
-    
-    
-
     if(result.length !== 0){
 
         listarProdutos(result,criarHtmlCard)
@@ -121,21 +103,15 @@ botoes.addEventListener('click',function(event){
 })
 
 function pesquisarTag(string){
-    let resultadoBusca = []
     
     if(string == 'Todos Produtos'){
         return produtos
     }
-    for( let i = 0; i < produtos.length; i++){
 
-        if(produtos[i].secao === string){
-            
-            resultadoBusca.push(produtos[i])
-            
-        }
-    }
+    const resultado = produtos.filter(element => element.secao == string)
+    console.log(resultado)
     
-    return resultadoBusca
+    return resultado
 }
 
 function criarTotais(array){
