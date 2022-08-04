@@ -102,14 +102,29 @@ secao.addEventListener('click',function(event){
 
 })
 
+// function pesquisarTag(string){
+    
+//     if(string == 'Todos Produtos'){
+//         return produtos
+//     }
+
+//     const resultado = produtos.filter(element => element.secao == string)
+//     console.log(resultado)
+    
+//     return resultado
+// }
 function pesquisarTag(string){
     
     if(string == 'Todos Produtos'){
         return produtos
     }
 
-    const resultado = produtos.filter(element => element.secao == string)
-    console.log(resultado)
+    const resultado = produtos.filter(element => {
+        let arr = element.secao.toLowerCase().split('')
+        let arrComparação = string.toLowerCase().split('')
+
+        return arrComparação.some(element => element[0] == arr[0]) 
+    })
     
     return resultado
 }
