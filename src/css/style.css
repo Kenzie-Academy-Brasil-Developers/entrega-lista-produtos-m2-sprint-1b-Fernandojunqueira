@@ -116,12 +116,16 @@ border-radius: 8px;
 }
 
 /*CONTAINER VITRINE*/
-
+.biriri{
+    display: flex;
+    gap: 15px;  
+}
 .containerVitrine {
-display: flex;
-width: 100%;
-justify-content: space-evenly;
-border-radius: 50px 0;
+    display: flex;
+    width: 75%;
+    justify-content: space-evenly;
+    border-radius: 50px 0;
+    flex-wrap: wrap;
 }
 
 /* CONTAINER DE PRODUTOS */
@@ -131,13 +135,12 @@ width: 100%;
 }
 
 .containerListaProdutos ul {
-list-style: none;
-display: flex;
-flex-wrap: wrap;
-justify-content: flex-start;
-gap: 10px;
-margin-top: 40px;
-width: 90%;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-top: 40px;
 }
 
 .containerListaProdutos ul li {
@@ -158,7 +161,7 @@ width: 100%;
 .containerListaProdutos ul li h3 {
 font-size: 1rem;
 font-weight: 500;
-margin: 10px 0 15px;
+margin: 10px 0 5px;
 color: #212529;
 }
 
@@ -166,14 +169,15 @@ color: #212529;
 font-size: 0.7rem;
 color: #868e96;
 font-weight: 400;
-margin: 10px 0;
+margin: 6px 0;
 }
 .containerListaProdutos ul li span {
 font-size: 0.8rem;
 font-weight: 500;
-margin-top: 10px;
+/* margin-top: 10px; */
+margin-bottom: 10px;
 display: inline-block;
-color: #212529;
+color: #868e96;
 }
 .containerListaProdutos ul li ol {
 list-style: decimal;
@@ -204,3 +208,147 @@ justify-content: space-between;
 padding: 5px;
 }
  
+/* carrinho */
+.carrinho{
+    width: 278px;
+    height: 300px;
+    box-sizing: border-box;
+    margin-top: 44px;
+}
+.carrinho__header{
+    display: flex;
+    background: #12B886;
+    justify-content: flex-start;
+    padding: 16px 20px 11px;
+    border-radius: 8px 8px 0 0;
+    gap: 13px;
+    overflow: hidden;
+    width: 100%;
+}
+.carrinho__header p{
+    color: #FFFFFF;
+}
+.carrinho__corpo{
+    overflow-y: auto;
+    max-height: 450px;
+}
+.carrinho__corpo--vazio{
+    
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+    width: 100%;
+
+}
+.carrinho__corpo--produto{
+    display: flex;
+    gap: 10px;
+    margin: 8px 0 10px 0;
+}
+.carrinho__corpo--produto > div img{
+    object-fit: cover;
+    width: 100px;
+}
+.mainCarrinho{
+    display: flex;
+    margin: 0;
+    justify-content: space-between;
+    width: 159px;
+}
+.mainCarrinho__descricao{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.mainCarrinho__descricao h2{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+.mainCarrinho__descricao p{
+    font-size: 12px;
+    line-height: 16px;
+    color: #868E96;
+}
+.mainCarrinho__descricao h4{
+    color: #212529;
+    line-height: 24px;
+    font-size: 14px;
+}   
+#trash{
+    object-fit: cover;
+    width: 15px;
+    margin-top: 4px;
+}
+
+#bag{
+    object-fit: cover;
+    width: 40px;
+}
+.valorTotal{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 45px;
+    padding: 0 22px 0 13px;
+    font-size: 12px;
+    font-weight: 500;
+}
+.qtd{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 45px;
+    padding: 0 22px 0 13px;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: #F8F9FA; 
+}
+
+@media (max-width: 768px){
+
+    .filtersContainer{
+        display: block;
+    }
+    .biriri{
+        display: block;
+    }
+    .priceContainer{
+        display: none;
+    }
+    .containerBuscaPorNome{
+        justify-content: flex-start;
+        margin-top: 15px;
+    }
+    .containerListaProdutos ul{
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        margin-top: 0px;
+    }
+    .containerListaProdutos ul li{
+        min-width: 215.34px;
+    }
+    .containerVitrine{
+        width: 100%;
+    }
+    #botoesContainer{
+        overflow-x: auto;
+        
+    }
+    .estiloGeralBotoes{
+        min-width: 143.5px;
+    }
+    .estiloGeralBotoes--botaoBuscaPorNome{
+        min-width: 20px;
+    }
+    .carrinho{
+        margin: 0 auto
+    }
+    main{
+        margin: 0 10px;
+    }
+}
