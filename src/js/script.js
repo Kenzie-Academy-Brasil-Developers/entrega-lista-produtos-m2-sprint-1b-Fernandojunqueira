@@ -139,9 +139,9 @@ function adicionarNoCarrinho(event){
 
     let btn = event.target
     
-    if(imgCarrinhoVazio.id == 'bag' && btn.innerText == 'Comprar'){
+    if(imgCarrinhoVazio.id == 'bag' && btn.innerText == 'Comprar' && quantidade == 0){
 
-        carrinhoCorpoVazio.remove()
+        carrinhoCorpo.innerHTML = ''
     }
     
     
@@ -149,8 +149,8 @@ function adicionarNoCarrinho(event){
     if(btn.innerText == 'Comprar'){
 
     
-        let tagDiv = criarProdutoCarrinho(produtos[btn.id])    
-        quantidade.push(produtos[btn.id]) 
+        let tagDiv = criarProdutoCarrinho(produtos[btn.id-1])    
+        quantidade.push(produtos[btn.id-1]) 
         carrinhoCorpo.appendChild(tagDiv)
             criarTotaisQuantidade()
             
@@ -260,7 +260,7 @@ carrinhoCorpo.addEventListener('click',removerTarefa)
 
 function removerTarefa(event){
 
-    
+    console.log(quantidade)
     
     let click  = event.target
     console.log(event.target)   
@@ -275,7 +275,7 @@ function removerTarefa(event){
         if(quantidade.length == 0){
             
             carrinhoFooter.innerHTML = ''
-            carrinhoCorpoVazio.innerHTML=''
+            // carrinhoCorpoVazio.innerHTML=''
             carrinhoCorpo.innerHTML = ` 
             <div class="carrinho__corpo--vazio">
                 <img src="./src/img/shopping-bag.png" alt="" id="bag">
@@ -283,7 +283,6 @@ function removerTarefa(event){
             </div>
         `
         
-
         }
     
     
