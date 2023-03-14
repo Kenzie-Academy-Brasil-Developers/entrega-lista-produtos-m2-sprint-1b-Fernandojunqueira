@@ -1,5 +1,3 @@
-// seu código aqui
-
 const vitrinePrincipalProdutos  = document.querySelector('ul')
 vitrinePrincipalProdutos.className = 'oi'
 const carrinho                  = document.querySelector('.carrinho')
@@ -25,11 +23,6 @@ function listarProdutos (array,callback){
         let card = callback(Element)
         vitrinePrincipalProdutos.appendChild(card)
     })
-    // for(let i = 0; i < array.length; i++){
-
-    //     let card = callback(array[i])
-    //     vitrinePrincipalProdutos.appendChild(card)
-    // }
     
     return arrayDeProdutos
 }
@@ -105,12 +98,6 @@ function criarProdutoCarrinho(obj){
 
 
 }
-
-function listarNutrientes (){
-
-    
-    
-}
         
 listarProdutos (produtos,criarHtmlCard)
 
@@ -144,20 +131,14 @@ function adicionarNoCarrinho(event){
         carrinhoCorpo.innerHTML = ''
     }
     
-    
-
     if(btn.innerText == 'Comprar'){
 
-    
         let tagDiv = criarProdutoCarrinho(produtos[btn.id-1])    
         quantidade.push(produtos[btn.id-1]) 
         carrinhoCorpo.appendChild(tagDiv)
             criarTotaisQuantidade()
             
-    }
-    
-
-    
+    }   
 
 }
 
@@ -173,11 +154,9 @@ function alimentarTotais(arr){
 
 function pesquisar(string){
 
-    
-    const result = produtos.filter(element => element.nome.toLowerCase() == string.trim().toLowerCase() || element.categoria.toLowerCase() == string.trim().toLowerCase())
+    const itensEncontrados = produtos.filter(item => item.nome.toLowerCase().includes(string));
 
-    inputPesquisar.value = ''
-    return result
+    return itensEncontrados
 }
 
 secao.addEventListener('click',function(event){
@@ -260,12 +239,8 @@ carrinhoCorpo.addEventListener('click',removerTarefa)
 
 function removerTarefa(event){
 
-    console.log(quantidade)
-    
     let click  = event.target
-    console.log(event.target)   
    
-
         if(click.id == 'trash'){
              quantidade.splice(0,1)
              click.closest('.carrinho__corpo--produto').remove()
@@ -275,7 +250,7 @@ function removerTarefa(event){
         if(quantidade.length == 0){
             
             carrinhoFooter.innerHTML = ''
-            // carrinhoCorpoVazio.innerHTML=''
+            
             carrinhoCorpo.innerHTML = ` 
             <div class="carrinho__corpo--vazio">
                 <img src="./src/img/shopping-bag.png" alt="" id="bag">
