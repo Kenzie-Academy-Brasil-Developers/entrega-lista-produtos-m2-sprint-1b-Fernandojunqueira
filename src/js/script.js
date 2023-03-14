@@ -154,7 +154,7 @@ function alimentarTotais(arr){
 
 function pesquisar(string){
 
-    const itensEncontrados = produtos.filter(item => item.nome.toLowerCase().includes(string));
+    const itensEncontrados = produtos.filter(item => item.nome.toLowerCase().includes(string.toLowerCase()));
 
     return itensEncontrados
 }
